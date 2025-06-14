@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Fast - خدمة توصيل سريعة</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="logo">Delivery Fast <span class="accent">⚡️</span></div>
+        <div class="nav-links">
+            <a href="#order" class="nav-link">الطلبات</a>
+        </div>
+        <a href="#contact" class="contact-icon" title="تواصل معنا">
+            <i class="fas fa-headset"></i>
+        </a>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Delivery Fast <span class="accent">⚡️</span></h1>
+            <p class="hero-text">اطلب براحتك... فاست ف الطريق 🚀⚡️</p>
+
+        </div>
+    </div>
+
+
+
+    <div class="order-details-section">
+        <h2>طلب جديد</h2>
+        <div class="order-form">
+            <div class="form-group">
+                <label>الاسم</label>
+                <input type="text" id="fullName" placeholder="اكتب اسمك هنا">
+            </div>
+            <div class="form-group">
+                <label>رقم الهاتف</label>
+                <input type="tel" id="phone" placeholder="اكتب رقم هاتفك">
+            </div>
+            <div class="form-group">
+                <label>العنوان</label>
+                <textarea id="address" placeholder="اكتب عنوانك بالتفصيل"></textarea>
+            </div>
+            <div class="form-group">
+                <label>الموقع على الخريطة</label>
+                <div class="location-input">
+                    <input type="text" id="location" placeholder="حدد موقعك" readonly>
+                    <button type="button" onclick="getLocation()" class="location-btn">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>طلبك</label>
+                <textarea id="orderDetails" placeholder="اكتب تفاصيل طلبك هنا"></textarea>
+            </div>
+            <div class="form-group">
+                <label>طريقة الدفع</label>
+                <div class="payment-options">
+                    <label class="payment-option">
+                        <input type="radio" name="paymentMethod" value="cash" checked>
+                        <span class="payment-icon"><i class="fas fa-money-bill-wave"></i></span>
+                        <span class="payment-label">كاش</span>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="paymentMethod" value="wallet">
+                        <span class="payment-icon"><i class="fas fa-wallet"></i></span>
+                        <span class="payment-label">محفظة إلكترونية</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>الشكاوى أو الملاحظات</label>
+                <textarea id="complaints" placeholder="اكتب هنا أي شكاوى أو ملاحظات لديك..."></textarea>
+            </div>
+            <a href="https://wa.me/201026530586" class="whatsapp-button" onclick="return sendOrder(event)">
+                <i class="fab fa-whatsapp"></i>
+                اطلب على الواتساب
+            </a>
+        </div>
+    </div>
+
+    <div class="contact-section">
+        <h2>تواصل معنا</h2>
+        <div class="social-links">
+            <a href="https://wa.me/201026530586" class="social-btn whatsapp" aria-label="واتساب">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://www.facebook.com/share/1BbUXdL6Ss/" class="social-btn facebook" aria-label="فيسبوك" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://instagram.com/your-instagram-page" class="social-btn instagram" aria-label="انستجرام" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
