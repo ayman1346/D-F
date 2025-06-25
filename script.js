@@ -344,7 +344,70 @@ function submitOrder() {
 window.onload = init;
 
 // Add scroll effect for navigation
-window.addEventListener('scroll', () => {
+document.addEventListener('DOMContentLoaded', function() {
+    // حماية من نسخ المحتوى
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.key === 'u') {
+            e.preventDefault();
+        }
+        if (e.ctrlKey && e.key === 'c') {
+            e.preventDefault();
+        }
+        if (e.ctrlKey && e.key === 's') {
+            e.preventDefault();
+        }
+    });
+
+    // حماية من التصوير
+    window.addEventListener('beforeunload', function(e) {
+        const screenshot = new Image();
+        screenshot.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+        screenshot.style.position = 'fixed';
+        screenshot.style.top = '0';
+        screenshot.style.left = '0';
+        screenshot.style.width = '100%';
+        screenshot.style.height = '100%';
+        screenshot.style.zIndex = '999999';
+        document.body.appendChild(screenshot);
+    });
+
+    // حماية من فتح DevTools
+    let devToolsOpen = false;
+    window.addEventListener('keydown', function(e) {
+        if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.shiftKey && e.key === 'J')) {
+            e.preventDefault();
+            if (!devToolsOpen) {
+                devToolsOpen = true;
+                setTimeout(() => {
+                    window.location.reload();
+                }, 100);
+            }
+        }
+    });
+
+    // حماية من التصوير الشاشة
+    const preventScreenshot = () => {
+        const overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+        overlay.style.zIndex = '999999';
+        document.body.appendChild(overlay);
+        setTimeout(() => {
+            overlay.remove();
+        }, 100);
+    };
+
+    // تفعيل الحماية كل 5 ثواني
+    setInterval(preventScreenshot, 5000);
+
     const nav = document.querySelector('nav');
     const currentScroll = window.pageYOffset;
 
