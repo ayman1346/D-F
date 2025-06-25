@@ -2,20 +2,17 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Delivery Fast - خدمة توصيل سريعة</title>
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <nav>
         <div class="logo">Delivery Fast <span class="accent">⚡️</span></div>
-        <div class="nav-links">
-            <a href="#order" class="nav-link">الطلبات</a>
-        </div>
-        <a href="#contact" class="contact-icon" title="تواصل معنا">
-            <i class="fas fa-headset"></i>
-        </a>
     </nav>
 
     <div class="hero">
@@ -98,5 +95,21 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // إضافة تأثير حركة لشريط التنقل
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll <= 0) {
+                nav.style.transform = 'translateY(0)';
+            } else {
+                nav.style.transform = 'translateY(-100%)';
+            }
+        });
+
+        // إضافة انتقال سلس
+        document.querySelector('nav').style.transition = 'transform 0.3s ease-in-out';
+    </script>
 </body>
 </html>

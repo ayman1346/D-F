@@ -54,35 +54,29 @@ function sendOrder(event) {
     const paymentIcon = paymentMethod === 'cash' ? '💵' : '💳';
     const paymentText = paymentMethod === 'cash' ? 'كاش' : 'محفظة إلكترونية';
 
-    const message = `*Delivery Fast ⚡️*
+    const message = `Delivery Fast 
 ` +
-        `--------------------------------
+        `طلب جديد 
 ` +
-        `*طلب جديد* 📦
+        ` الاسم: ${fullName}
 ` +
-        `--------------------------------
+        `رقم الهاتف: ${phone}
 ` +
-        `👤 *الاسم:* ${fullName}
+        ` العنوان ${address}
 ` +
-        `📱 *رقم الهاتف:* ${phone}
-` +
-        `📍 *العنوان:* ${address}
-` +
-        (location ? `📌 *الموقع:* ${location}\n` : '') +
-        `${paymentIcon} *طريقة الدفع:* ${paymentText}\n` +
-        `--------------------------------
-` +
-        `🛒 *تفاصيل الطلب:*
-${orderDetails}\n` +
-        `--------------------------------
-` +
-        (complaints ? `📝 *الشكاوى والملاحظات:*
-${complaints}\n` + `--------------------------------
+        (location ? `الموقع: ${location}
 ` : '') +
-        `🕒 *وقت الطلب:* ${new Date().toLocaleString('ar-EG')}
+        `${paymentIcon} طريقة الدفع: ${paymentText}
 ` +
-        `--------------------------------\n` +
-        `*شكراً لاختياركنا! 🙏*`;
+        `تفاصيل الطلب:
+${orderDetails}
+` +
+        (complaints ? `الشكاوى والملاحظات
+${complaints}
+` : '') +
+        `وقت الطلب: ${new Date().toLocaleString('ar-EG')}
+` +
+        `شكراً لاختياركنا! `;
 
     alert('تم إرسال طلبك بنجاح! سيتم التواصل معك قريباً 🚀');
 
@@ -222,3 +216,18 @@ function submitOrder() {
 
 // Initialize the page when loaded
 window.onload = init;
+
+// Add scroll effect for navigation
+window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll <= 0) {
+        nav.style.transform = 'translateY(0)';
+    } else {
+        nav.style.transform = 'translateY(-100%)';
+    }
+});
+
+// Add smooth transition
+document.querySelector('nav').style.transition = 'transform 0.3s ease-in-out';
