@@ -535,19 +535,29 @@ textarea:hover {
     }
 }
 
-/* التجاوب مع الشاشات الصغيرة */
-@media screen and (max-width: 768px) {
-    .hero {
-        padding: 4rem 1rem;
+@media screen and (max-width: 320px) {
+    body {
+        font-size: 0.9rem;
     }
 
-    .hero h1 {
+    .hero {
+        padding: 2rem 0.5rem;
+    }
+
+    .hero-content h1 {
         font-size: 2.5rem;
     }
 
-    .hero-text {
+    .hero-content p {
         font-size: 1rem;
-        padding: 0 1rem;
+    }
+
+    .nav {
+        padding: 0.5rem;
+    }
+
+    .nav-toggle {
+        font-size: 1.2rem;
     }
 
     .order-form {
@@ -559,74 +569,49 @@ textarea:hover {
     }
 
     .payment-options {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .payment-option {
-        width: 100%;
-        flex-direction: row;
-        justify-content: center;
-        gap: 10px;
-        padding: 12px;
-    }
-
-    .payment-icon {
-        margin-bottom: 0;
-    }
-
-    .location-input {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .location-btn {
-        width: 100%;
-        height: 45px;
-    }
-
-    .whatsapp-button {
-        width: 100%;
-        justify-content: center;
-        padding: 12px;
-        font-size: 1rem;
-    }
-
-    nav {
         padding: 1rem;
     }
 
-    .logo {
-        font-size: 1.4rem;
-    }
-
-    .nav-links {
-        gap: 1rem;
-    }
-
-    .contact-icon {
-        width: 35px;
-        height: 35px;
-        font-size: 1rem;
+    .payment-option {
+        padding: 1rem;
     }
 
     .social-links {
-        gap: 15px;
+        gap: 1rem;
     }
 
-    .social-btn {
-        width: 45px;
-        height: 45px;
+    .social-link {
+        padding: 1rem;
+    }
+
+    .contact-info {
+        padding: 1rem;
+    }
+
+    .contact-item {
+        padding: 1rem;
+    }
+
+    .footer {
+        padding: 2rem 0.5rem;
+    }
+
+    .footer-section {
+        padding: 1rem;
+    }
+
+    .footer-section h3 {
         font-size: 1.2rem;
     }
 
-    input, textarea {
-        font-size: 16px; /* يمنع التكبير التلقائي في iOS */
-        padding: 12px;
+    .footer-link {
+        padding: 0.5rem;
     }
 
-    label {
-        font-size: 0.9rem;
+    .copyright {
+        margin-top: 1.5rem;
+    }
+}
     }
 }
 
