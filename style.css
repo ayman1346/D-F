@@ -24,7 +24,7 @@ body {
 
 .hero {
     background-color: var(--dark-black);
-    padding: 4rem 1rem;
+    padding: 3rem 1rem;
 }
 
 .hero-content {
@@ -33,7 +33,7 @@ body {
     align-items: center;
     text-align: center;
     gap: 1.5rem;
-    padding: 4rem 1rem;
+    padding: 3rem 1rem;
     color: white;
 }
 
@@ -44,12 +44,27 @@ body {
 }
 
 .rounded-image {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     border: 4px solid var(--primary-blue);
     box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+    .hero {
+        padding: 2rem 1rem;
+    }
+    
+    .hero-content {
+        padding: 2rem 1rem;
+    }
+    
+    .rounded-image {
+        width: 120px;
+        height: 120px;
+    }
 }
 
 .rounded-image:hover {
@@ -60,7 +75,7 @@ body {
 nav {
     background-color: rgba(18, 18, 18, 0.95);
     color: var(--text-white);
-    padding: 1.2rem 2rem;
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -75,7 +90,24 @@ nav {
 
 .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+    nav {
+        padding: 0.8rem;
+    }
+    
+    .nav-links {
+        gap: 0.5rem;
+    }
+    
+    .contact-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
 }
 
 .contact-icon {
@@ -229,21 +261,83 @@ nav {
     text-align: center;
 }
 
+.order-details-section {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.order-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--text-gray);
+}
+
 input {
     width: 100%;
     padding: 0.8rem;
     margin: 0.5rem 0;
     border: 1px solid rgba(30, 136, 229, 0.3);
-    background-color: var(--input-bg);
-    color: var(--text-white);
     border-radius: 8px;
-    outline: none;
+    background: var(--input-bg);
+    color: var(--text-white);
+    font-size: 1rem;
     transition: all 0.3s ease;
 }
 
 input:focus {
+    outline: none;
     border-color: var(--primary-blue);
-    box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2);
+    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+    .hero {
+        padding: 4rem 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-text {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    .order-form {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    input {
+        padding: 0.7rem;
+        font-size: 0.95rem;
+    }
+    
+    .form-group textarea {
+        height: 100px;
+    }
+
+    .order-details-section {
+        margin: 2rem auto;
+        padding: 1rem;
+    }
 }
 
 .location-input {
