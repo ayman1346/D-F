@@ -35,6 +35,124 @@ function getLocation() {
     }
 }
 
+function loadCustomers() {
+    try {
+        return JSON.parse(localStorage.getItem('customers')) || [];
+    } catch (error) {
+        return [];
+    }
+}
+
+function saveCustomers(customers) {
+    localStorage.setItem('customers', JSON.stringify(customers));
+}
+
+function checkCustomerRewards(fullName, phone) {
+    const customers = loadCustomers();
+    const customer = customers.find(c => c.phone === phone);
+    
+    if (customer) {
+        customer.orders++;
+        if (customer.orders === 15 && !customer.rewardClaimed) {
+            showRewardModal(fullName);
+            customer.rewardClaimed = true;
+        }
+    } else {
+        customers.push({
+            fullName,
+            phone,
+            orders: 1,
+            rewardClaimed: false
+        });
+    }
+    saveCustomers(customers);
+}
+
+function showRewardModal(fullName) {
+    const modal = document.createElement('div');
+    modal.className = 'reward-modal';
+    modal.innerHTML = `
+        <div class="reward-content">
+            <h2>🎉 مبروك! 🎉</h2>
+            <p>أهلاً بك في عائلتنا المميزة!</p>
+            <p>لقد طلبت منا 15 مرة، لذا نقدم لك مكافأة خاصة:</p>
+            <div class="reward-options">
+                <div class="reward-option">
+                    <input type="radio" id="discount10" name="reward" value="10%">
+                    <label for="discount10">خصم 10% على طلبك التالي</label>
+                </div>
+                <div class="reward-option">
+                    <input type="radio" id="freeDelivery" name="reward" value="freeDelivery">
+                    <label for="freeDelivery">توصيل مجاني لطلبك التالي</label>
+                </div>
+            </div>
+            <button onclick="selectReward()">اختيار المكافأة</button>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+
+function selectReward() {
+    const selectedReward = document.querySelector('input[name="reward"]:checked');
+    if (selectedReward) {
+        const reward = selectedReward.value;
+        const fullName = document.getElementById('fullName').value;
+        const phone = document.getElementById('phone').value;
+        
+        const customers = loadCustomers();
+        const customer = customers.find(c => c.phone === phone);
+        if (customer) {
+            customer.reward = reward;
+            saveCustomers(customers);
+            
+            // إضافة المكافأة إلى رسالة الواتساب
+            const message = `*Delivery Fast ⚡️*
+` +
+                `--------------------------------
+` +
+                `طلب جديد 📦
+` +
+                `--------------------------------
+` +
+                `👤 الاسم: ${fullName}
+` +
+                `📱 رقم الهاتف: ${phone}
+` +
+                `📍 العنوان: ${address}
+` +
+                (location ? `📌 الموقع: ${location}
+` : '') +
+                `${paymentIcon} طريقة الدفع: ${paymentText}
+` +
+                `--------------------------------
+` +
+                `🛒 تفاصيل الطلب:
+${orderDetails}
+` +
+                `--------------------------------
+` +
+                (complaints ? `📝 الشكاوى والملاحظات:
+${complaints}
+` : '') +
+                `🕒 *وقت الطلب:* ${new Date().toLocaleString('ar-EG')}
+` +
+                `--------------------------------
+` +
+                `🎁 *مكافأة العميل المميز:* ${reward === '10%' ? 'خصم 10%' : 'توصيل مجاني'}
+` +
+                `--------------------------------
+` +
+                `شكراً لاختياركنا! 🙏`;
+
+            alert('تم اختيار المكافأة بنجاح! سيتم تطبيقها على طلبك التالي');
+            document.querySelector('.reward-modal').remove();
+            
+            // تحديث رسالة الواتساب
+            window.location.href = `https://wa.me/201026530586?text=${encodeURIComponent(message)}`;
+        }
+    }
+}
+
 function sendOrder(event) {
     event.preventDefault();
     
@@ -53,6 +171,8 @@ function sendOrder(event) {
     const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
     const paymentIcon = paymentMethod === 'cash' ? '💵' : '💳';
     const paymentText = paymentMethod === 'cash' ? 'كاش' : 'محفظة إلكترونية';
+
+    checkCustomerRewards(fullName, phone);
 
     const message = `Delivery Fast ⚡️
 ` +
